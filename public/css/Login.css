@@ -1,0 +1,35 @@
+﻿hr {
+    height: 12px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(0,0,0,0.5);
+}
+
+.divStyleCenter {
+    text-align: center;
+}
+
+.navbar-brand  {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin: auto;
+}
+
+body
+{ 
+    padding-top:80px; 
+}
+
+.marginTop20
+{
+    margin-top:20px;
+}
+
+.colorWhite
+{
+    color: white;
+}
+
+
+ 

@@ -1,0 +1,146 @@
+﻿
+<div class="container bgcol">
+    <div>
+        <h3 class="head text-center"><i>{{ title }}</i></h3>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-3">
+            <img ng-src="{{ poster }}" height="360" width="243" />
+            <hr />
+            <button id="favbutton" class="glyphicon glyphicon-heart-empty" ng-class="changeClass(favtext)" ng-click="switchFav()">
+                <span style="font-family:Tahoma"> {{favtext}}</span>
+            </button>
+        </div>
+
+        <div class="col-md-6">
+            <p ng-hide="!releaseDate" class="ng-hide"><b>Release Date: </b>{{releaseDate|date: 'MMM dd, yyyy'}}</p>
+            <br />
+            <p ng-hide="!cast" class="ng-hide"><b>Cast: </b>{{ cast }}</p>
+            <br />
+            <p ng-hide="!directors" class="ng-hide"><b>Directed By: </b>{{ directors }}</p>
+            <br />
+            <p ng-hide="!synopsis" class="ng-hide text-justify"><b>Plot: </b>{{ synopsis }}</p>
+            <br />
+            <p ng-hide="!genre" class="ng-hide"><b>Genre: </b>{{ genre }}</p>
+            <br />
+            <p ng-hide="!rating" class="ng-hide"><b>Rating: </b>{{ rating }}</p>
+            <br />
+            <p ng-hide="!audience_score" class="ng-hide"><b>Audience Rating: </b>{{audience_score/20 | number:1}}/5</p>
+            <p ng-hide="!critics_score" class=" ng-hide"><b>Critics: </b>{{ critics_score }}%</p>
+            <br />
+            <p ng-hide="!studio" class="ng-hide"><b>Studio: </b>{{ studio }}</p>
+        </div>
+        <div class="col-md-3" ng-hide="!similarMovies.length">
+            <h5>You may also like:</h5>
+            <div ng-repeat="m in similarMovies">
+                <a href="#/movie/{{m.id}}">
+                    <img class="mymargin myimage" ng-src="{{ m.posters.thumbnail }}" height="100" width="60" />
+                </a>
+            </div>
+            <p class="myclearBoth">
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="col-lg-6">
+        <hr />
+        <h4>Showtimes</h4>
+        <hr />
+        <form name="myForm">
+            <div class="col-md-3">
+                <input name="zip" class="form-control" ng-model="form.zip" placeholder="Zip Code..." required />
+                <p class="ng-hide alert-danger" ng-hide="form.zip">*Required</p>
+            </div>
+            <div class="col-md-7">
+                <input type="date" class="form-control " ng-model="date" value={{date}} required />
+                <p class="ng-hide alert-danger" ng-hide="date">*Required</p>
+            </div>
+            <button type="submit" class="btn btn-info" ng-disabled="!(form.zip&&date)" ng-click="dispshowtimes(form,date)">
+                <span>search</span>
+            </button>
+        </form>
+        <table class="table table-striped ng-hide" ng-hide="!showtimes.length">
+            <thead>
+                <tr>
+                    <th>Theatre Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Booking Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="s in showtimes">
+                    <td>{{s.theatre.name}}</td>
+                    <td>{{s.dateTime | date:"dd-MM-yyyy"}}</td>
+                    <td>{{s.dateTime | date:"hh:mm a"}}</td>
+                    <td><a href=" {{s.ticketURI}}" target="_blank">Book@Fandango</a></td>
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="alert alert-danger ng-hide" ng-hide="!errmessage" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            {{errmessage}}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <hr />
+        <h4>Reviews</h4>
+        <hr />
+        <table class="table table-striped">
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <div class="">
+                            <textarea class="form-control" ng-model="review"></textarea>
+                        </div>
+                        <br />
+                        <button id="reviewButton" ng-class="ngClassChange()" class="" ng-click="reviewfn()">{{reviewButtonText}}</button>
+                    </div>
+
+                </td>
+            </tr>
+            <tr ng-repeat="r in reviews">
+                <td>
+                    <b>On </b>
+                    <b>{{r.creationDate}},</b>
+                    <b><a href="#/profile/{{r.useremail}}">{{r.userFirstname}}</a></b>
+                    <b> wrote: </b><br />
+                    <p>{{r.review}}</p>
+                    <button ng-hide="!r.displayEditDeleteBtn" data-toggle="modal" data-target="#editReview" class="ng-hide btn btn-info" ng-click="editReviewfn(r._id, r.review)">Edit</button>
+                    <button ng-hide="!r.displayEditDeleteBtn" ng-click="deleteReview(r._id)" class="ng-hide btn btn-danger">Delete</button>
+                </td>
+            </tr>
+            <tr ng-repeat="r in reviewsRT">
+                <td>
+                    <b>On </b>
+                    <b>{{r.date|date: 'EEE, MMM dd, yyyy'}},</b>
+                    <b>{{r.critic}}</b>
+                    <b> wrote: </b><br />
+                    <p>{{r.quote}}</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="editReview">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Edit Review</h4>
+            </div>
+            <div class="modal-body">
+                <textarea class="form-control" id="newReview" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="submitNewReview" ng-click="submitUpdatedReview()" data-dismiss="modal" type="button" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+    </div>
+</div>

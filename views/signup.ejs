@@ -1,0 +1,104 @@
+<!-- views/signup.ejs -->
+<!doctype html>
+<html>
+  <head>
+    <title>Tickster</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+      <!-- load bootstrap css -->
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+        <!-- load fontawesome -->
+        <link rel="stylesheet" href="/css/style.css">
+          <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+
+
+          <script src="/app/js/util.js"></script>
+
+
+        </head>
+  <body class="bgcol container">
+          <div class="top-header">
+            <div class="logo">
+              <a href="/">
+                <img src="images/tickster.png" alt="" />
+              </a>
+              <p>Movies</p>
+            </div>
+          </div>
+
+
+
+    <div class="container bgcol" >
+      <br />
+      <br />
+
+      <div class="col-sm-6 col-sm-offset-3">
+
+        <h1>
+          <span class="fa fa-sign-in"></span> Sign up
+        </h1>
+
+        <!-- show any messages that come back with authentication -->
+        <% if (message.length > 0) { %>
+        <div class="alert alert-danger">
+          <%= message %>
+        </div>
+        <% } %>
+
+        <!-- LOGIN FORM -->
+        <form name="myForm" action="/signup" method="post" onsubmit="return validateForm();" enctype="multipart/form-data">
+
+
+
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" name="name" required="">
+		</div>
+          <div class="form-group">
+            <label>Tell us something about yourself:</label>
+            <input type="text" class="form-control" name="aboutme" required="">
+		</div>
+          <div class="form-group">
+            <label>Profile Picture</label>
+            <input type="file" name="profilePic" id="profilePic" required="">
+		</div>
+
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" name="email" required="">
+		</div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password" required="">
+		</div>
+
+          <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" class="form-control" name="confirmpassword" required="">
+		</div>
+
+          <button type="submit" class="btn btn-warning btn-lg">Signup</button>
+        </form>
+
+        <br />
+        <p>
+          Already have an account? <a href="/login">Login</a>
+        </p>
+        <p>
+          Don't want to signup? Go to <a href="/tickster">Tickster</a>
+        </p>
+
+        <hr/>
+        <div class="divStyleCenter">
+          <footer>
+
+            <p>
+              <b>Copyright &copy; Bhumitra Nagar. All rights reserved.</b>
+            </p>
+
+          </footer>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

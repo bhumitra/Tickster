@@ -1,0 +1,49 @@
+﻿<div class="container bgcol">
+    <div>
+        <h3 class="head text-center"><span ng-hide="showFollowButton">Hi, </span><i>{{ name }}</i></h3>
+    </div>
+    <hr />
+        <div class="row ">
+            <div class="col-md-4">
+                <img ng-src="{{ profilePic }}" height="300" width="300" />
+            </div>
+            <div class="col-md-8">
+                <p ng-show="aboutme" class=""><b>About {{name}}: </b>{{ aboutme }}</p>
+                <br />
+                <p ng-show="email" class=""><b>Email: </b>{{ email }}</p>
+                <br />
+                <h2 ng-hide="email" class=""><b>This user has deleted his/her account.</b></h2>
+                <button ng-hide="!showDeleteAccountButton" class="ng-hide btn btn-danger" ng-click="deleteAccount()">Delete Account</button>
+                <button id="followButton" ng-class="changeFollowClass(followButtonText)" ng-hide="!showFollowButton" ng-click="followUnfollow()">{{followButtonText}}</button>
+            </div>
+        </div>
+        <hr />
+        <div class="col-md-6">
+            <div class="row ng-hide " ng-hide="!likedMovies.length">
+                <h4><span ng-hide="!showFollowButton">{{name}}'s </span> 
+                    <span ng-hide="showFollowButton">Your</span>
+                Favourite Movies</h4>
+                <div ng-repeat="m in likedMovies">
+                    <a href="#/movie/{{m.id}}">
+                        <img class="mymargin myimage" ng-src="{{ m.posters.thumbnail |changeUrl:'/movie/':1}}" height="160" width="110" />
+                    </a>
+                </div>
+                <p class="myclearBoth">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row ng-hide " ng-hide="!followedUsers.length">
+                <h4>
+                    <span ng-hide="!showFollowButton">{{name}}</span>
+                    <span ng-hide="showFollowButton">You</span>
+                    Follow<span ng-hide="!showFollowButton">s</span>
+                </h4>
+                <div ng-repeat="f in followedUsers">
+                    <a href="#/profile/{{f.local.email}}">
+                        <img class="mymargin image2" ng-src="{{f.local.profilePicUrl}}" height="160" width="120" />
+                    </a>
+                </div>
+                <p class="myclearBoth">
+            </div>
+        </div>
+    </div>

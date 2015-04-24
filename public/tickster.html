@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html ng-app="tickster" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="flexslider/flexslider.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/style_home.css" type="text/css" media="screen" />   
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <title>Tickster</title>
+    <style type="text/css">
+        .flexslider-container {
+            width: 90%;
+            margin: 10px auto;
+        }
+        homelinks{
+            color:white; 
+            text-align:center;
+        }
+
+    </style>
+    
+</head>
+<body>
+    <div ng-controller="appController">
+        <div class="full">
+            <div class="menu">
+                <ul>
+                    <li><a class="cursorPointer homelinks" style="color:white; text-align:center" href="#/"><i class="home"></i>Movies</a></li>
+                    <li ng-hide="!profileButtonVisible" class="ng-show"><a id="profileButton" style="color:white;text-align:center;"><div class="cat"><i class="watching"></i><i class="watching1"></i></div>Profile</a></li>
+                    <li><a id="loginButton" style="color:white; text-align:center;"></a></li>
+                    <li><a id="aboutBtn" style="color:white; text-align:center;" href="#/about"><div class="cnt"><i class="contact"></i><i class="contact1"></i></div>About</a></li>
+                </ul>
+            </div>
+
+            <div class="main">
+                <div class="header1">
+                    <div class="top-header">
+                        <div class="logo">
+                            <a href="#/"><img src="images/tickster.png" alt="" /></a>
+                            <p>Movies</p>
+                        </div>
+                        <div class="search">
+                            <form>
+                                <input type="text" value="Search Movies.." placeholder="Search Movies.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}" ng-model="queryText" id="queryTextBox" ng-enter="search()" />
+                                <input id="submitQuery" ng-click="search()" type="submit" value="">
+                            </form>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div>
+                <script src="js/jquery.min.js"></script>
+                <script src="app/js/lib/bootstrap.min.js"></script>
+                <script src="app/js/lib/jquery.cookie.js"></script>
+                <script src="app/js/lib/angular.min1.js"></script>
+                <script src="app/js/lib/angular-route.min.js"></script>
+                <script src="app/js/lib/angular-animate.min.js"></script>
+                <script src="app/js/lib/moment.min.js"></script>
+                <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+                <script src="flexslider/jquery.flexslider.js"></script>
+                <script src="js/angular-flexslider.js"></script>
+                <script src='../inf/src/lib/ng-infinite-scroll.min.js'></script>
+                <script src="app/app.js"></script>
+              
+
+                <div ng-view class="bgcol">
+
+
+                </div>
+                <div class="footer">
+                    <div class="copyright">
+                        <p> Copyright &copy; Bhumitra Nagar - <a href="http://bhumitranagar.com">BhumitraNagar.com</a></p>
+                    </div>
+                </div>
+            </div>           
+        </div>        
+    </div>
+    <div class="clearfix"></div>
+</body>
+</html>

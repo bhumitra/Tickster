@@ -1,0 +1,43 @@
+﻿<div class="container bgcol">
+    <h4 class="margin">Search Results</h4>
+    <div infinite-scroll='loadMore()'>
+        <div id="results" class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Poster</th>
+                        <th>Movie Name</th>
+                        <th>Rating</th>
+                        <th>Year</th>                     
+                        <th>Audience</th>
+                        <th>Critics</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="m in search">
+                        <td>
+                            <a href="#/movie/{{m.id}}">
+                                <img ng-src="{{m.posters.thumbnail}}" height="100" width="70"/>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#/movie/{{m.id}}">{{m.title}}</a>
+                        </td>
+                        <td>{{m.mpaa_rating}}</td>
+                        <td>{{m.year}}</td>
+                        <td>{{m.ratings.audience_score/20 | number:1}}/5</td>
+                        <td>{{m.ratings.critics_score}} %</td>
+                       
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="alert alert-danger ng-hide" ng-hide="flag" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+       No movie found
+    </div>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+</div>

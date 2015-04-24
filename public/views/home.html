@@ -1,0 +1,36 @@
+﻿<div class="bgcol top-header">
+    <h4>Coming Soon</h4>
+    <flex-slider class="carousel" slide="m in upcomingmovies track by $index" animation="slide" animation-loop="true" item-height="300" item-width="150" item-margin="5">
+        <li>
+            <a href="#/movie/{{m.id}}"><img ng-src="{{m.posters.thumbnail | changeUrl:'/movie/':1}}" alt="{{m.title}}" height=" 300" width="200" /></a>
+        </li>
+    </flex-slider>
+
+    <link rel="stylesheet" href="flexslider/flexslider.css" type="text/css" media="screen" />
+    <script src="flexslider/jquery.flexslider.js"></script>
+    <script src="js/angular-flexslider.js"></script>
+
+    <h4>In Theatres</h4>
+    <div infinite-scroll='loadMore()'>
+        <ul class="photo-grid">
+            <li ng-repeat='m in inTheatreMovies'>
+                <a href="#/movie/{{m.id}}">
+                    <figure>
+                        <img ng-src="{{m.posters.thumbnail | changeUrl:'/movie/':1}}" alt="{{m.title}}" height="350" width="300" />
+                        <figcaption>
+                            <p>
+                                {{m.title}}
+                                <br />
+                                <span class="subinfo">Release Date: {{m.release_dates.theater|date: 'MMM, dd, yyyy'}}</span>
+                                <br />
+                                <span class="subinfo">Rating: {{m.ratings.audience_score/20 | number:1}}/5</span>
+                                <br />
+                                <span class="subinfo">Critics: {{m.ratings.critics_score}}%</span>
+                            </p>
+                        </figcaption>
+                    </figure>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
